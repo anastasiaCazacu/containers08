@@ -36,7 +36,7 @@ Docker - instalat.
 
 Creez structura propusa:
 
-```
+```text
 site
 ├── modules/
 │   ├── database.php
