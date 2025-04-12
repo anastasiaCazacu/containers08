@@ -1,39 +1,47 @@
-name: CI
+name: Run PHP Tests with Docker Compose
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Set up Docker
+    steps:
+      # Step 1: Checkout code
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Step 3: Install Docker Compose
+      - name: Install Docker Compose
         run: |
-          docker --version
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
-      - name: Build the Docker image
-        run: docker build -t containers08 .
+      # Step 4: Build and start Docker containers using Docker Compose
+      - name: Build and run Docker containers
+        run: |
+          docker-compose up -d
 
-      - name: Create Docker container
-        run: docker create --name container --volume database:/var/www/db containers08
+      # Step 5: Run PHP tests inside the container
+      - name: Run PHP Tests
+        run: |
+          docker-compose exec php php /path/to/tests.php
 
-      - name: Copy tests to the container
-        run: docker cp ./tests container:/var/www/html
-
-      - name: Start the container
-        run: docker start container
-
-      - name: Run PHP tests
-        run: docker exec container php /var/www/html/tests/tests.php
-
-      - name: Stop the container
-        run: docker stop container
+      # Step 6: Stop Docker containers after testing
+      - name: Stop Docker containers
+        run: |
+          docker-compose down
 
       - name: Remove the container
         run: docker rm container
