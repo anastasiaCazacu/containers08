@@ -77,4 +77,47 @@ c. Creșterea încrederii în cod (mai ales când sunt schimbări mari);
 d. Automatizarea verificării codului în procesul de CI(Integrarea continuă).
 ```
 
-3.
+3. Cât de des trebuie să fie executate testele unitare?
+
+Ideal:
+
+- La fiecare push (când cineva trimite cod nou);
+
+- La fiecare pull request (înainte de a integra codul în ramura principală);
+
+- Periodic, ex. noaptea (builduri programate).
+
+4. Ce modificări trebuie făcute în `.github/workflows/main.yml` pentru a rula testele la fiecare Pull Request?
+
+```yaml
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+```
+
+Aceasta va rula acțiunile: când cineva dă `push` pe `main`, si când cineva face un `pull request` către `main`.
+
+5. Ce trebuie adăugat în `.github/workflows/main.yml` pentru a șterge imaginile Docker după testare?
+
+La sfârșitul `jobs` trebuie să adaugam un pas care șterge imaginile:
+
+```yaml
+- name: Cleanup Docker
+  run: docker rmi $(docker images -q) || true
+```
+
+## Concluzie
+
+In cadrul acest laborator am învățat să:
+
+- Folosim GitHub Actions pentru integrarea continuă;
+
+- Configurăm fișiere workflow pentru a testa automat codul;
+
+- Verificăm funcționarea aplicației prin teste unitare;
+
+- Întreținem un mediu curat prin ștergerea resurselor temporare (imagini Docker)
+
+Integrarea continuă ajută la menținerea unui cod curat, sigur și funcțional, reducând riscul apariției de erori în versiunea finală a aplicației.
