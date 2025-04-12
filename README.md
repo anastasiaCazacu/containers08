@@ -53,3 +53,28 @@ si fisierele propuse spre creare
 `git add .`
 `git commit -m "Initial commit "`
 `git push`
+
+![alt text](image-3.png)
+
+- dupa mai multe incercari printre altele si calile gresite dar am obtinut in : Verificand în fila „Actions” pe GitHub dacă apare jobul și primesc ✅ Super tare! 🎉
+  ![alt text](image-4.png)
+
+## Răspunsul intrebarilor
+
+1. Ce este integrarea continuă?
+   Integrarea continuă (Continuous Integration - CI) este un proces prin care modificările aduse codului sunt testate și verificate automat, de fiecare dată când sunt adăugate în proiect (prin push sau pull request). Scopul acestui proces este de a detecta rapid eventualele erori și de a preveni integrarea codului defectuos.
+
+2. Pentru ce sunt necesare testele unitare?
+   Testele unitare verifică funcționarea corectă a părților mici (unități) ale aplicației — cum ar fi funcții, metode sau clase. Ele sunt necesare pentru:
+
+```txt
+a. Detectarea rapidă a bug-urilor;
+
+b. Asigurarea că noile modificări nu strică funcționalitatea existentă;
+
+c. Creșterea încrederii în cod (mai ales când sunt schimbări mari);
+
+d. Automatizarea verificării codului în procesul de CI(Integrarea continuă).
+```
+
+3.
