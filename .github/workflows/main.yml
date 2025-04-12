@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
+      # Step 1: Check out the code
       - name: Check out the code
         uses: actions/checkout@v2
 
@@ -28,7 +28,7 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
-      # Step 4: Build and start Docker containers using Docker Compose
+      # Step 4: Build and run Docker containers using Docker Compose
       - name: Build and run Docker containers
         run: |
           docker-compose up -d
@@ -42,6 +42,3 @@ jobs:
       - name: Stop Docker containers
         run: |
           docker-compose down
-
-      - name: Remove the container
-        run: docker rm container
