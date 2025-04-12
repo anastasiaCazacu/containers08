@@ -49,31 +49,7 @@ site
 └── index.php
 ```
 
-```
-containers08/
-├── sql/
-│   └── schema.sql
-├── site/
-│   ├── modules/
-│   ├── templates/
-│   ├── styles/
-│   ├── config.php
-│   └── index.php
-├── Dockerfile
-├── .github/
-│   └── workflows/
-│       └── main.yml
-├── tests/
-│   ├── testframework.php
-│   └── tests.php
-└── README.md
-```
-
-- Rulez `docker build -t containers08 .`
-
-- Verific starea: `docker images`
-
-![alt text](image.png)
-
-- Rulez containerului Docker. Creez și să rulez containerul din această imagine pentru a porni aplicația: `docker run -d -p 8080:80 --name crafti_app containers08
-`
+si fisierele propuse spre creare
+`git add .`
+`git commit -m "Initial commit "`
+`git push`
