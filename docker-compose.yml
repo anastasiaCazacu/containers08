@@ -5,7 +5,7 @@ services:
     image: php:8.1-cli
     container_name: php-container
     volumes:
-      - .:/var/www/html
+      - .:/var/www/html/tests/tests.php
     networks:
       - app-network
     command: php -S 0.0.0.0:8000 -t /var/www/html
